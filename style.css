@@ -1,0 +1,285 @@
+:root {
+  --color-dark: #233c4b;   /* background / navbar */
+  --color-accent: #ff7d20; /* primary accent (buttons, highlights) */
+  --color-accent-soft: #a0c382; /* secondary accent */
+  --color-bg-soft: #f5f7f9;    /* page background */
+  --color-card-bg: #ffffff;    /* cards */
+  --color-muted: #5f988c;      /* muted text / badges */
+}
+
+
+/* Global */
+body {
+  background-color: var(--color-accent-soft);
+  color: #1f2933;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+html, body {
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+/* Navbar */
+.navbar {
+  /* display: flex;
+  align-items: center; */
+  background-color: var(--color-dark) !important;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: center;  /* center horizontally */
+  align-items: center;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+
+main h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+main h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+
+.text-muted {
+  color: #6b7280 !important;
+}
+
+.page-footer {
+  background: var(--color-dark);
+  color: #ffffff;
+  padding: 1rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(31,41,55,0.9);
+  margin-top: 2rem;
+}
+
+.page-footer .social-media a {
+  color: #ffffff;
+  margin: 0 0.5rem;
+}
+
+.page-footer .social-media img {
+  filter: invert(1);  /* makes the GitHub icon white against dark bg */
+}
+
+/* Primary button (search) */
+#search-button.btn-primary {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  font-weight: 600;
+  border-radius: 0.375rem; /* Match Bootstrap's default input border-radius */
+  padding: 0.375rem 0.75rem; /* Adjust padding to match input height */
+  font-size: 1rem; /* Match Bootstrap's default input font-size */
+  line-height: 1.5; /* Match Bootstrap's default input line-height */
+  text-align: center; 
+}
+
+#search-button.btn-primary:hover {
+  background-color: #e26e1d;
+  border-color: #e26e1d;
+}
+
+/* Save / Saved buttons */
+.btn-save-favorite.btn-outline-primary {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.btn-save-favorite.btn-outline-primary:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.btn-save-favorite.btn-success.is-favorite {
+  background-color: var(--color-muted);
+  border-color: var(--color-muted);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Favorites toggle button */
+.btn-favorites-toggle {
+  border-color: var(--color-accent);       /* orange border */
+  color: var(--color-accent);
+  background-color: #ffffff;              /* white button */
+  font-weight: 500;
+  border-radius: 0.375rem; /* Match Bootstrap's default input border-radius */
+  padding: 0.375rem 0.75rem; /* Adjust padding to match input height */
+  font-size: 1rem; /* Match Bootstrap's default input font-size */
+  line-height: 1.5; /* Match Bootstrap's default input line-height */
+  text-align: center; /* Ensure text is centered */
+}
+
+.btn-favorites-toggle:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.btn-favorites-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 125, 32, 0.35); /* soft orange focus ring */
+}
+
+
+
+/* Modal */
+#recipeDetailsModal .modal-header {
+  border-bottom: none;
+  background-color: var(--color-dark);
+  color: #ffffff;
+  justify-content: center;  /* center content in header */
+  position: relative;
+}
+
+#recipeDetailsModal .modal-title {
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
+#recipeDetailsModal .modal-body {
+  text-align: left;
+}
+
+#recipeDetailsModal .modal-body h4,
+#recipeDetailsModal .modal-body p {
+  text-align: left;
+}
+
+/* Better alignment for ingredients list in modal */
+#details-title {
+  text-align: center;
+}
+
+#details-ingredients {
+  padding-left: 1.25rem;   /* smaller indent than default */
+  margin-bottom: 1rem;
+  list-style-position: outside;
+}
+
+#details-ingredients li {
+  margin-bottom: 0.35rem;  /* small vertical spacing */
+  line-height: 1.4;
+}
+
+/* keep close button in the top-right even though content is centered */
+#recipeDetailsModal .btn-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  filter: invert(1);
+}
+
+/* Recipe cards */
+#results-grid .card,
+#favorites-grid .card {
+  border: 1px solid var(--color-muted);
+  border-radius: 0.75rem;
+  background-color: var(--color-card-bg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#results-grid .card:hover,
+#favorites-grid .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Hide favorites section by default */
+#favorites-section {
+  display: none;
+  background-color: var(--color-card-bg);
+  border: 2px solid var(--color-accent);
+  padding: 1.5rem 1.25rem 2rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+}
+
+/* When we want to show it, we’ll add .is-visible via JS */
+#favorites-section.is-visible {
+  display: block;
+}
+
+#favorites-section h2 {
+  color: var(--color-dark);
+}
+
+.card-img-top.recipe-image {
+  height: 160px;           /* smaller image height */
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 0.9rem 1rem 1rem;
+}
+
+/* Typography inside cards */
+.card-title {
+  font-size: 1rem;         /* smaller title */
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.card-text {
+  font-size: 0.85rem;
+}
+
+.card-text strong {
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.card-text.small {
+  color: #6b7280;
+}
+
+
+/* Layout: slightly tighter grid on large screens */
+#results-grid .col-12.col-md-6.col-lg-4,
+#favorites-grid .col-12.col-md-6.col-lg-4 {
+  margin-bottom: 0.75rem;
+}
+
+
+/* Modal image adjustments for small screens */
+@media (max-width: 576px) {
+  #recipeDetailsModal .modal-body img {
+    max-height: 220px;
+    object-fit: cover;
+  }
+
+  #recipeDetailsModal .modal-body {
+    padding: 0.75rem 1rem;
+  }
+
+  #recipeDetailsModal .modal-header {
+    padding: 0.5rem 1rem;
+  }
+
+  #search-button,
+  #toggle-favorites-btn {
+    width: auto; /* Allow buttons to take natural width */
+  }
+}

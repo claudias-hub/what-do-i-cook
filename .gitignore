@@ -1,0 +1,8 @@
+# Ignore backend dependencies and secrets
+backend/node_modules/
+backend/.env
+
+# OS / editor files (optional, but nice to have)
+.DS_Store
+Thumbs.db
+.vscode/
