@@ -20,8 +20,11 @@ const detailsInstructions = document.getElementById("details-instructions");
 const detailsSource = document.getElementById("details-source");
 const toggleFavoritesBtn = document.getElementById("toggle-favorites-btn");
 
-// === CONFIG: Your own backend API ===
-const API_BASE_URL = "http://localhost:3000/api";
+// === CONFIG: API ===
+const API_BASE_URL = 
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+   ? "http://localhost:3000"
+   : "https://what-do-i-cook.onrender.com";
 
 // Helper functions for UI state
 function showLoading() {
@@ -158,7 +161,7 @@ function renderRecipes(recipes) {
 async function fetchRecipesByIngredients(ingredients) {
   const params = new URLSearchParams({ ingredients });
 
-  const url = `${API_BASE_URL}/recipes/search?${params.toString()}`;
+  const url = `${API_BASE_URL}/api/recipes/search?${params.toString()}`;
 
   const response = await fetch(url);
 
@@ -172,11 +175,11 @@ async function fetchRecipesByIngredients(ingredients) {
 
 // Fetch full recipe details from our backend
 async function fetchRecipeDetails(id) {
-  const url = `${API_BASE_URL}/recipes/${id}/details`;
+  const url = `${API_BASE_URL}/api/recipes/${id}/details`;
   const response = await fetch(url);
 
   if (!response.ok) {
-    throw new Error(`Details API error: ${response.status}`);
+    throw new Error(`Failed to fetch recipe details: ${response.status}`);
   }
 
   const data = await response.json();
